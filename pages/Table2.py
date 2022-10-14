@@ -6,25 +6,34 @@ import numpy as np
 def fetch():
 
     return pd.DataFrame(
-        np.random.randn(1, 3),
-        columns=('col %d' % i for i in range(20))
+        np.random.randn(10, 3),
+        columns=('col %d' % i for i in range(3))
     )
 
 
 data = fetch()
 st.title("Data table attempt #2")
-opt = pd.DataFrame(columns=["Option1", "Option2", "Option3"])
+
 col1, col2, col3 = st.columns(3, gap="small")
 
+if 'right' not in st.session_state:
+    st.session_state['right'] = []
+if 'middle' not in st.session_state:
+    st.session_state['middle'] = []
+if 'left' not in st.session_state:
+    st.session_state['left'] = []
+
 with col1:
-    opt1 = st.selectbox("option1", data[0])
-    opt.append({"Option1": opt1}, ignore_index=True)
+    opt1 = st.selectbox("option1", data)
+    st.session_state['right'].append(opt1)
 
 with col2:
-    opt2 = st.selectbox("option2", data[1])
-    opt.append({"Option2": opt2}, ignore_index=True)
+    opt2 = st.selectbox("option2", data)
+    st.session_state['middle'].append(opt1)
 
 with col3:
-    opt3 = st.select_box("option3", data[2])
-    opt.append({"Option3": opt3}, ignore_index=True)
+    opt3 = st.selectbox("option3", data)
+    st.session_state['right'].append(opt1)
+
+opt = pd.DataFrame({"Option1": [opt1], "Option2": [opt2], "Option3": [opt3]})
 st.dataframe(opt)
