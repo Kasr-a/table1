@@ -25,5 +25,5 @@ index = 0
 for colN in range(0, colNum):
     with col[colN]:
         for data in colsData.values():
-            st.selectbox("Grid", data, label_visibility='collapsed', key=f'column {index}')
+            st.selectbox("Grid", data, label_visibility='collapsed', key=f'datapoint {index}')
             index += 1
