@@ -25,7 +25,9 @@ def fetch3():
     )
 
 
-data = fetch()
+data1 = fetch1()
+data2 = fetch2()
+data3 = fetch3()
 st.title("Data table attempt #2")
 
 col1, col2, col3 = st.columns(3, gap="small")
